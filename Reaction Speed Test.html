@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reaction Speed Test</title>
+</head>
+
+<body style="background-color:white; font-family:roboto, sans-serif;">
+
+<h1 style="
+  background-color:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:5px 5px 15px rgba(0,0,0,0.5);
+  text-align:center;">
+  Reaction Speed Test
+</h1>
+<h1 style="
+    background-color:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:5px 5px 15px rgba(0,0,0,0.5);
+    text-align:center;">
+    Click the button as soon as it turns green!
+</h1>
+
+<div style="text-align: center;">
+    <button id="start-btn" onClick="startTest()" style="background-color: rgb(66, 12, 215); color: rgb(255, 255, 255); padding: 20px; border-radius: 10px; border: none; cursor: pointer; height: 75px; width: 200px; font-size: 20px; text-align: center;">
+        Start Test 
+    </button><br><br>
+</div>
+
+<script>
+function startTest() {
+    let rTimeTimeout = Math.floor(Math.random() * 10000) + 1000;
+    let button = document.getElementById('start-btn');
+    button.innerText = 'Wait...';
+    button.style.backgroundColor = "rgb(215, 12, 66)";
+    
+    setTimeout(() => {
+        button.innerText = 'Click Now!';
+        button.style.backgroundColor = "rgb(12, 215, 66)";
+        let startTime = Date.now();
+        
+        button.onclick = () => {
+            let reactionTime = Date.now() - startTime;
+            button.innerText = `Your reaction time is ${reactionTime} ms! Click to try again.`;
+            button.style.backgroundColor = "gray";
+            button.style.height = "110px";
+            button.onclick = startTest; // reset for next try
+        }
+    }, rTimeTimeout);
+}
+</script>
+
+</body>
+</html>
+
+    
